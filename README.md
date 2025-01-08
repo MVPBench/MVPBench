@@ -12,3 +12,7 @@ All data is hosted on [google pan](https://drive.google.com/drive/folders/1geVRG
 
 Statistics of MVPBench are shown below. The benchmark includes 14 tasks in 5 domains, ranging from low-level pattern comparison to mid-level temporal logic reasoning, and extending to high-level visual content understanding.
 ![Dataset Statistics](assets/Figure3.jpg)
+
+## Disclaimers
+For some specific tasks in MVPBench, we manually collected images that are publicly available from online search. We have made every effort to ensure that the images included in this paper are used in accordance with applicable copyright laws and are properly credited. However, if you are the copyright owner of any image included in our work and believe that its use conflicts with your licensing agreements, please contact us directly. We are committed to addressing any legitimate concerns promptly.
+
