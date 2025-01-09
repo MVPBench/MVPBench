@@ -13,6 +13,9 @@ All data is hosted on [google pan](https://drive.google.com/drive/folders/1geVRG
 Statistics of MVPBench are shown below. The benchmark includes 14 tasks in 5 domains, ranging from low-level pattern comparison to mid-level temporal logic reasoning, and extending to high-level visual content understanding.
 ![Dataset Statistics](assets/Figure3.jpg)
 
+## Evaluation
+We adhere to the default inference settings of the [SWIFT](https://github.com/modelscope/ms-swift/tree/main) framework, utilizing the <video> placeholder to predefine the position of the input video within the prompt. This approach facilitates the integration of visual and language input, guiding the model accordingly. We employ a set of predefined rules along with GPT-3.5-turbo to extract the selected answer from the model’s output.
+
 ## Disclaimers
 For some specific tasks in MVPBench, we manually collected images that are publicly available from online search. We have made every effort to ensure that the images included in this paper are used in accordance with applicable copyright laws and are properly credited. However, if you are the copyright owner of any image included in our work and believe that its use conflicts with your licensing agreements, please contact us directly. We are committed to addressing any legitimate concerns promptly.
 
