@@ -14,7 +14,34 @@ Statistics of MVPBench are shown below. The benchmark includes 14 tasks in 5 dom
 ![Dataset Statistics](assets/Figure3.jpg)
 
 ## Evaluation
-We adhere to the default inference settings of the [SWIFT](https://github.com/modelscope/ms-swift/tree/main) framework, utilizing the <video> placeholder to predefine the position of the input video within the prompt. This approach facilitates the integration of visual and language input, guiding the model accordingly. We employ a set of predefined rules along with GPT-3.5-turbo to extract the selected answer from the model’s output.
+We adhere to the default inference settings of the [SWIFT](https://github.com/modelscope/ms-swift/tree/main) framework, utilizing the &lt;video&gt; placeholder to predefine the position of the input video within the prompt. This approach facilitates the integration of visual and language input, guiding the model accordingly. We employ a set of predefined rules along with GPT-3.5-turbo to extract the selected answer from the model’s output.
+
+In the dataset files we provide, each file contains the original video files and the corresponding annotation file in jsonl format. The annotation file contains the following information (taking the Multiview visual perception pairing task as an example):
+```
+"id": "01209_f.mp4"
+```
+This means that this jsonl entry records the annotation information corresponding to the video file named '01209_f.mp4'. It is also the file name of the reference video in this task.
+```
+"query": "Please analyze the given reference video, Ref Video: <video> Compare it with the three candidate videos provided: Video 1: <video>Video 2: <video>Video 3: <video> The task is to identify the candidate video that corresponds to the reference video. The reference video is presented from a first-person perspective, while the correct candidate video is shown from a second-person perspective of the same scene. The other two candidate videos are considered distractors and do not match the reference video. Please examine each video closely and identify the candidate video that accurately matches the reference video. Provide your answer solely as a single digit that corresponds to the number of the correct candidate video, without any additional explanation or information."
+```
+This records the prompt that will be input into the SWIFT framework. The four &lt;video&gt placeholders indicate that the four video paths will be input in sequence during the framework's reasoning process.
+```
+"video_options": ["01209_s.mp4", "00460_s.mp4", "01043_s.mp4"]
+```
+This represents the file names of the three videos to be selected in the above query.
+```
+"options": ["1", "2", "3"]
+```
+This represents the input order of the three candidate videos. In this example, the three candidate videos will be input in sequence.
+```
+"answer": "1"
+```
+This corresponds to the "options" above, and records the serial number of the correct answer we expect the model to respond to the input prompt. This serial number is exactly one of the index relationships corresponding to "video_options" recorded in "options".
+
+A complete enrty of the jsonl file is as follows:
+```
+{"id": "01209_f.mp4", "query": "Please analyze the given reference video, Ref Video: <video> Compare it with the three candidate videos provided: Video 1: <video>Video 2: <video>Video 3: <video> The task is to identify the candidate video that corresponds to the reference video. The reference video is presented from a first-person perspective, while the correct candidate video is shown from a second-person perspective of the same scene. The other two candidate videos are considered distractors and do not match the reference video. Please examine each video closely and identify the candidate video that accurately matches the reference video. Provide your answer solely as a single digit that corresponds to the number of the correct candidate video, without any additional explanation or information.", "video_options": ["01209_s.mp4", "00460_s.mp4", "01043_s.mp4"], "options": ["1", "2", "3"], "answer": "1"}
+```
 
 ## Disclaimers
 For some specific tasks in MVPBench, we manually collected images that are publicly available from online search. We have made every effort to ensure that the images included in this paper are used in accordance with applicable copyright laws and are properly credited. However, if you are the copyright owner of any image included in our work and believe that its use conflicts with your licensing agreements, please contact us directly. We are committed to addressing any legitimate concerns promptly.
